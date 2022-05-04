@@ -1,25 +1,71 @@
-/* eslint-disable */
+import _ from 'lodash';
+import StringSchema from './schemas/StringSchema.js';
+import NumberSchema from './schemas/NumberSchema.js';
+import ArraySchema from './schemas/ArraySchema.js';
+import ObjectSchema from './schemas/ObjectSchema.js';
 
 export default class Validator {
-  constructor() {}
+  constructor() {
+    this.validatorsInitialSchema = {
+      string: {
+        required(value) {
+          return _.isString(value) && !_.isEmpty(value);
+        },
+        minLength(value, length) {
+          return value.length >= length;
+        },
+        contains(value, substr) {
+          return value.includes(substr);
+        },
+      },
+      number: {
+        required(value) {
+          return _.isNumber(value) && !_.isNil(value);
+        },
+        positive(value) {
+          return value >= 0;
+        },
+        range(value, min, max) {
+          return value >= min && value <= max;
+        },
+      },
+      array: {
+        required(value) {
+          return Array.isArray(value);
+        },
+        sizeof(value, size) {
+          return value.length === size;
+        },
+      },
+      object: {
+        shape(object, validationObject) {
+          return Object.entries(object).every(([key, value]) =>
+            validationObject[key].isValid(value)
+          );
+        },
+      },
+    };
+  }
 
   string() {
-    return this;
+    return new StringSchema(this.validatorsInitialSchema.string);
   }
 
-  isValid(element) {
-    return true;
+  number() {
+    return new NumberSchema(this.validatorsInitialSchema.number);
   }
 
-  required() {
-    return this;
+  array() {
+    return new ArraySchema(this.validatorsInitialSchema.array);
   }
 
-  contains(element) {
-    return this;
+  object() {
+    return new ObjectSchema(this.validatorsInitialSchema.object);
   }
 
-  minLength() {
-    return this;
+  addValidator(schema, validatorName, validateFunction) {
+    const currentSchema = this.validatorsInitialSchema[schema];
+    if (!currentSchema) throw new Error('Unknown schema');
+    currentSchema[validatorName] = validateFunction;
   }
 }
