@@ -56,7 +56,7 @@ test('object-validator', () => {
       .isValid({
         name: 'Pavel',
         age: 12,
-      })
+      }),
   ).toBeTruthy();
 });
 

@@ -39,8 +39,8 @@ export default class Validator {
       },
       object: {
         shape(object, validationObject) {
-          return Object.entries(object).every(([key, value]) =>
-            validationObject[key].isValid(value)
+          return Object.entries(object).every(
+            ([key, value]) => validationObject[key].isValid(value),
           );
         },
       },
