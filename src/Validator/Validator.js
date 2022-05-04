@@ -23,7 +23,7 @@ export default class Validator {
           return _.isNumber(value);
         },
         positive(value) {
-          return value > 0 && !_.isNull(value);
+          return value > 0;
         },
         range(value, min, max) {
           return value >= min && value <= max;
