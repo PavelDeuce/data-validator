@@ -20,7 +20,7 @@ export default class Validator {
       },
       number: {
         required(value) {
-          return _.isNumber(value) && !_.isNil(value);
+          return _.isNumber(value);
         },
         positive(value) {
           return value >= 0;
