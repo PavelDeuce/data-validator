@@ -31,7 +31,7 @@ export default class Validator {
       },
       array: {
         required(value) {
-          return _.isArray(value) && !_.isEmpty(value);
+          return _.isArray(value) || !_.isEmpty(value);
         },
         sizeof(value, size) {
           return value.length === size;
