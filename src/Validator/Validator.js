@@ -9,7 +9,7 @@ export default class Validator {
     this.validatorsInitialSchema = {
       string: {
         required(value) {
-          return _.isString(value) && !_.isEmpty(value);
+          return _.isString(value) && !_.isEmpty(value) && !_.isNil(value);
         },
         minLength(value, length) {
           return value.length >= length;
@@ -23,7 +23,7 @@ export default class Validator {
           return _.isNumber(value);
         },
         positive(value) {
-          return value > 0;
+          return value > 0 || _.isNil(value);
         },
         range(value, min, max) {
           return value >= min && value <= max;
@@ -31,7 +31,7 @@ export default class Validator {
       },
       array: {
         required(value) {
-          return _.isArray(value);
+          return _.isArray(value) && !_.isEmpty(value);
         },
         sizeof(value, size) {
           return value.length === size;

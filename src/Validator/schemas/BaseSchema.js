@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 export default class BaseSchema {
   constructor(validators) {
     this.validators = validators;
@@ -16,14 +14,11 @@ export default class BaseSchema {
   }
 
   test(validatorName, ...args) {
-    const validator = this.validators[validatorName];
-    if (!validator) throw new Error('Unknown validator');
-    this.checkedValidators.push({ validator, args });
+    this.applyValidator(validatorName, ...args);
     return this;
   }
 
   isValid(data) {
-    if (!this.isRequired && _.isNull(data)) return true;
     return this.checkedValidators.every(({ validator, args }) => validator(data, ...args));
   }
 }
