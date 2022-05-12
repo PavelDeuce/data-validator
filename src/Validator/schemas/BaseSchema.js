@@ -1,3 +1,5 @@
+import errorMessages from '../constants.js';
+
 export default class BaseSchema {
   constructor(validators) {
     this.validators = validators;
@@ -6,7 +8,7 @@ export default class BaseSchema {
 
   applyValidator(validatorName, ...args) {
     const validator = this.validators[validatorName];
-    if (!validator) throw new Error('Unknown validator');
+    if (!validator) throw new Error(errorMessages.unknownValidator(validatorName));
     this.checkedValidators.push({ validator, args });
     return this;
   }

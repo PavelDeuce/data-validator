@@ -3,6 +3,7 @@ import NumberSchema from './schemas/NumberSchema.js';
 import ArraySchema from './schemas/ArraySchema.js';
 import ObjectSchema from './schemas/ObjectSchema.js';
 import validatorsInitialSchema from './initial-validators/index.js';
+import errorMessages from './constants.js';
 
 export default class Validator {
   constructor() {
@@ -25,9 +26,9 @@ export default class Validator {
     return new ObjectSchema(this.validatorsInitialSchema.object);
   }
 
-  addValidator(schema, validatorName, validateFunction) {
-    const currentSchema = this.validatorsInitialSchema[schema];
-    if (!currentSchema) throw new Error('Unknown schema');
+  addValidator(schemaName, validatorName, validateFunction) {
+    const currentSchema = this.validatorsInitialSchema[schemaName];
+    if (!currentSchema) throw new Error(errorMessages.unknownSchema(schemaName));
     currentSchema[validatorName] = validateFunction;
   }
 }
