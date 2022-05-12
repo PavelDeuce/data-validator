@@ -1,50 +1,12 @@
-import _ from 'lodash';
 import StringSchema from './schemas/StringSchema.js';
 import NumberSchema from './schemas/NumberSchema.js';
 import ArraySchema from './schemas/ArraySchema.js';
 import ObjectSchema from './schemas/ObjectSchema.js';
+import validatorsInitialSchema from './initial-validators/index.js';
 
 export default class Validator {
   constructor() {
-    this.validatorsInitialSchema = {
-      string: {
-        required(value) {
-          return _.isString(value) && !_.isEmpty(value) && !_.isNil(value);
-        },
-        minLength(value, length) {
-          return value.length >= length;
-        },
-        contains(value, substr) {
-          return value.includes(substr);
-        },
-      },
-      number: {
-        required(value) {
-          return _.isNumber(value);
-        },
-        positive(value) {
-          return value > 0 || _.isNil(value);
-        },
-        range(value, min, max) {
-          return value >= min && value <= max;
-        },
-      },
-      array: {
-        required(value) {
-          return _.isArray(value) || !_.isEmpty(value);
-        },
-        sizeof(value, size) {
-          return value.length === size;
-        },
-      },
-      object: {
-        shape(object, validationObject) {
-          return Object.entries(object).every(
-            ([key, value]) => validationObject[key].isValid(value),
-          );
-        },
-      },
-    };
+    this.validatorsInitialSchema = validatorsInitialSchema;
   }
 
   string() {
