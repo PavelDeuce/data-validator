@@ -5,7 +5,9 @@
   "keywords": [],
   "main": "src/index.js",
   "scripts": {
-    "test": "npx jest --colors"
+    "test": "npx jest --colors",
+    "test-coverage": "npm test -- --coverage --coverageProvider=v8",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",

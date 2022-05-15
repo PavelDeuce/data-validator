@@ -7,13 +7,13 @@ install-deps:
 	npm ci
 
 test:
-	npm test
+	npm run test
 
 test-coverage:
-	npm test -- --coverage --coverageProvider=v8
+	npm run test-coverage
 
 lint:
-	npx eslint .
+	npm run lint
 
 publish:
 	npm publish
