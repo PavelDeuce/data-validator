@@ -1,11 +1,11 @@
-import string from './string.js';
-import number from './number.js';
-import array from './array.js';
-import object from './object.js';
+import initStringValidators from './string.js';
+import initNumberValidators from './number.js';
+import initArrayValidators from './array.js';
+import initObjectValidators from './object.js';
 
-export default {
-  string,
-  number,
-  array,
-  object,
-};
+export default () => ({
+  string: initStringValidators(),
+  number: initNumberValidators(),
+  array: initArrayValidators(),
+  object: initObjectValidators(),
+});

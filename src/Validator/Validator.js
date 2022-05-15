@@ -2,12 +2,12 @@ import StringSchema from './schemas/StringSchema.js';
 import NumberSchema from './schemas/NumberSchema.js';
 import ArraySchema from './schemas/ArraySchema.js';
 import ObjectSchema from './schemas/ObjectSchema.js';
-import validatorsInitialSchema from './initial-validators/index.js';
+import initValidators from './initial-validators/index.js';
 import errorMessages from './constants.js';
 
 export default class Validator {
   constructor() {
-    this.validatorsInitialSchema = validatorsInitialSchema;
+    this.validatorsInitialSchema = initValidators();
   }
 
   string() {

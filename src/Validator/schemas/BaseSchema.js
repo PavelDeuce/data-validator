@@ -10,7 +10,6 @@ export default class BaseSchema {
     const validator = this.validators[validatorName];
     if (!validator) throw new Error(errorMessages.unknownValidator(validatorName));
     this.checkedValidators.push({ validator, args });
-    return this;
   }
 
   test(validatorName, ...args) {

@@ -1,6 +1,7 @@
 import Validator from '../src/index.js';
+import errorMessages from '../src/Validator/constants.js';
 
-test('string-validator', () => {
+test('String', () => {
   const validator = new Validator();
   const schema = validator.string();
 
@@ -20,20 +21,23 @@ test('string-validator', () => {
   expect(schema.contains('whatthe').isValid('what does the fox say')).toBe(false);
 });
 
-test('number-validator', () => {
+test('Number', () => {
   const validator = new Validator();
   const schema = validator.number();
 
+  expect(schema.isValid(null)).toBe(true);
+  expect(schema.isValid(0)).toBe(true);
   expect(schema.isValid(100)).toBeTruthy();
 
   schema.required();
 
   expect(schema.isValid(null)).toBeFalsy();
   expect(schema.positive().isValid(100)).toBeTruthy();
+  expect(schema.positive().isValid(-10)).toBeFalsy();
   expect(schema.range(99, 101)).toBeTruthy();
 });
 
-test('array-validator', () => {
+test('Array', () => {
   const validator = new Validator();
   const schema = validator.array();
 
@@ -43,7 +47,7 @@ test('array-validator', () => {
   expect(schema.sizeof(3).isValid([1, 2, 3])).toBeTruthy();
 });
 
-test('object-validator', () => {
+test('Object', () => {
   const validator = new Validator();
   const schema = validator.object();
 
@@ -60,11 +64,31 @@ test('object-validator', () => {
   ).toBeTruthy();
 });
 
-test('add-new-validator', () => {
+test('Custom', () => {
   const validator = new Validator();
   validator.addValidator('number', 'negative', (value) => value < 0);
   const schema = validator.number().required();
   schema.test('negative');
   expect(schema.isValid(10)).toBeFalsy();
   expect(schema.isValid(-10)).toBeTruthy();
+});
+
+test('Check immutable', () => {
+  const validator1 = new Validator();
+  const fn = (value, start) => value.startsWith(start);
+  validator1.addValidator('string', 'startWith', fn);
+
+  const validator2 = new Validator();
+  expect(() => {
+    validator2.string().test('startWith', 'H');
+  }).toThrow(errorMessages.unknownValidator('startWith'));
+});
+
+test('Unsupported schema', () => {
+  const v = new Validator();
+  const fn = (value) => value === false;
+
+  expect(() => {
+    v.addValidator('boolean', 'isFalse', fn);
+  }).toThrow(errorMessages.unknownSchema('boolean'));
 });
