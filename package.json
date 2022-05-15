@@ -1,8 +1,13 @@
 {
   "name": "@hexlet/code",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
-  "keywords": [],
+  "keywords": [
+    "validator",
+    "schema builder",
+    "oop",
+    "validation"
+  ],
   "main": "src/index.js",
   "scripts": {
     "test": "npx jest --colors",
@@ -11,19 +16,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PavelDeuce/js-oop-project-lvl1.git"
+    "url": "git+https://github.com/PavelDeuce/validator.git"
   },
   "author": "Pavel Deryugin (PavelDeuce)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PavelDeuce/js-oop-project-lvl1/issues"
+    "url": "https://github.com/PavelDeuce/validator/issues"
   },
   "type": "module",
   "jest": {
     "testEnvironment": "node",
     "transform": {}
   },
-  "homepage": "https://github.com/PavelDeuce/js-oop-project-lvl1#readme",
+  "homepage": "https://github.com/PavelDeuce/validator#readme",
   "dependencies": {
     "debug": "^4.2.0",
     "lodash": "^4.17.20"
