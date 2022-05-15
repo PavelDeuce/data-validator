@@ -1,4 +1,4 @@
-# Validator
+# data-validator
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/14ddf4272f570ead26e6/maintainability)](https://codeclimate.com/github/PavelDeuce/js-oop-project-lvl1/maintainability)
 [![Actions Status](https://github.com/PavelDeuce/js-oop-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/PavelDeuce/js-oop-project-lvl1/actions)

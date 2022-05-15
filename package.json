@@ -16,19 +16,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PavelDeuce/validator.git"
+    "url": "git+https://github.com/PavelDeuce/data-validator.git"
   },
   "author": "Pavel Deryugin (PavelDeuce)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PavelDeuce/validator/issues"
+    "url": "https://github.com/PavelDeuce/data-validator/issues"
   },
   "type": "module",
   "jest": {
     "testEnvironment": "node",
     "transform": {}
   },
-  "homepage": "https://github.com/PavelDeuce/validator#readme",
+  "homepage": "https://github.com/PavelDeuce/data-validator#readme",
   "dependencies": {
     "debug": "^4.2.0",
     "lodash": "^4.17.20"
