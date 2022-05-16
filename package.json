@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "",
+  "description": "JS schema builder for value validation",
   "keywords": [
     "validator",
     "schema builder",
