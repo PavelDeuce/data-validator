@@ -9,7 +9,7 @@ JS schema builder for value validation
 
 ## Example
 
-```
+```javascript
   const validator = new Validator();
   const schema = validator.number();
   schema.isValid(null)) // true
